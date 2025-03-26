@@ -13,13 +13,13 @@ import { Config, Connector, CreateConnectorFn } from "wagmi";
 import { ConnectMutateAsync } from "wagmi/query";
 import Logo from "../shared/logo";
 
-interface WalletOptionsProps {
+interface ConnectEthProps {
   label: string;
   connectors: readonly Connector<CreateConnectorFn>[];
   connect: ConnectMutateAsync<Config, unknown>;
 }
 
-const WalletOptions = ({ label, connectors, connect }: WalletOptionsProps) => {
+const ConnectEth = ({ label, connectors, connect }: ConnectEthProps) => {
   const navigate = useNavigate();
 
   async function handleConnect(connector: Connector<CreateConnectorFn>) {
@@ -33,7 +33,7 @@ const WalletOptions = ({ label, connectors, connect }: WalletOptionsProps) => {
 
   return (
     <Dialog>
-      <DialogTrigger className="text-sm font-semibold flex justify-center items-center cursor-pointer gap-2 bg-neutral-200 h-9 rounded-md px-3">
+      <DialogTrigger className="text-sm cursor-pointer font-semibold flex justify-center items-center gap-2 bg-neutral-200 h-9 rounded-md px-3">
         {label}
         <Wallet className="size-4" />
       </DialogTrigger>
@@ -82,4 +82,4 @@ const WalletOptions = ({ label, connectors, connect }: WalletOptionsProps) => {
   );
 };
 
-export default WalletOptions;
+export default ConnectEth;

@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight, Users } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useAccount, useConnect } from "wagmi";
-import WalletOptions from "../wallet/wallet-options";
+import WalletOptions from "../wallet/connect-eth";
 
 const Hero = () => {
   return (
@@ -31,17 +30,12 @@ const HeroHeader = () => {
 const HeroContent = () => {
   const { connectAsync, connectors } = useConnect();
   const account = useAccount();
-  const navigate = useNavigate();
 
-  const handleHandbookClick = () => {
-    navigate("/app");
-  };
   return (
     <div className="w-full flex flex-col justify-center items-center gap-1">
       <div className="z-10 flex justify-center items-center gap-3">
-        <Button onClick={handleHandbookClick}>
-          About Patron
-          <ChevronRight />
+        <Button variant={"default"}>
+          About Patron <ChevronRight />
         </Button>
         {account.isConnected ? (
           <Button variant={"secondary"}>

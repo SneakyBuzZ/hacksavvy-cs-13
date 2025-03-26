@@ -6,6 +6,8 @@ import {
   TwitterIcon,
 } from "lucide-react";
 import Logo from "@/components/shared/logo";
+import { Button } from "../ui/button";
+import { useDisconnect } from "wagmi";
 
 const SOCIAL_LISTS = [
   {
@@ -92,9 +94,15 @@ const FOOTER_LISTS = [
 ];
 
 const FooterHome = () => {
+  const { disconnectAsync } = useDisconnect();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  async function HandleDisconnect() {
+    await disconnectAsync();
+  }
 
   return (
     <footer className="w-full flex-col justify-center items-center border-t border-neutral-900">
@@ -105,6 +113,7 @@ const FooterHome = () => {
             <span className="text-3xl md:text-4xl text-h1 font-audiowide">
               Patron
             </span>
+            <Button onClick={HandleDisconnect}>Disconnect</Button>
           </div>
           <p className="text-sm md:text-base tracking-tighter text-neutral-500">
             Your Comprehensive Knowledge Hub for Technology. Discover the Future
